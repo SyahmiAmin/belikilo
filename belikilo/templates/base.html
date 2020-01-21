@@ -28,6 +28,17 @@
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
 
+        <div class="auth">
+            {% if request.user.is_authenticated %}
+                Hello {{ request.user.username }},
+                <a href="{% url 'account_logout' %}">Logout?</a>
+            {% else %}
+                Hi guest! 
+                <a href="{% url 'account_login' %}">Login?</a>
+            {% endif %}
+        
+        </div>
+
         {% block content %}{% endblock %}
 
         {# Global javascript #}
