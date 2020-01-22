@@ -15,7 +15,7 @@ class Kirim(models.Model):
         (CAIRO_TO_KL, 'Cairo to KL'),
         (KL_TO_CAIRO, 'KL to Cairo'),
     ]
-    kirim_destination = models.CharField(max_length=10, choices=KIRIM_DESTINATION_CHOICES, default=CAIRO_TO_KL)
+    destination = models.CharField(max_length=10, choices=KIRIM_DESTINATION_CHOICES, default=CAIRO_TO_KL)
 
     # location
     location = models.CharField(max_length=120)
@@ -34,3 +34,6 @@ class Kirim(models.Model):
 
     # description
     description     = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.title
