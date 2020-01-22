@@ -6,7 +6,7 @@ from django.db import models
 class Kirim(models.Model):
 
     # title
-    location = models.CharField(max_length=120, blank=False)
+    title = models.CharField(max_length=120)
 
     # destination
     CAIRO_TO_KL = 'CAI-KUL'
@@ -18,7 +18,7 @@ class Kirim(models.Model):
     kirim_destination = models.CharField(max_length=10, choices=KIRIM_DESTINATION_CHOICES, default=CAIRO_TO_KL)
 
     # location
-    location = models.CharField(max_length=120, blank=False)
+    location = models.CharField(max_length=120)
 
 
     # last submission date
@@ -27,10 +27,10 @@ class Kirim(models.Model):
     arrival_date = models.DateField(auto_now=False, auto_now_add=False)
     
     # price per kg
-    price = models.DecimalField(decimal_places=2, max_digits=4, default=20.00)
+    price_in_RM = models.DecimalField(decimal_places=2, max_digits=4, default=20.00)
 
     # available units (kg)
-    available_units = models.DecimalField(decimal_places=2, max_digits=4, default=20.00)
+    available_units_in_kg = models.IntegerField(default=1)
 
     # description
     description     = models.TextField(blank=True)
