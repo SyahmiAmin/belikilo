@@ -19,27 +19,47 @@
 
         {# Global stylesheets #}
         <link rel="stylesheet" type="text/css" href="{% static 'css/belikilo.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
         {% endblock %}
     </head>
 
-    <body class="{% block body_class %}{% endblock %}">
-        {% wagtailuserbar %}
+    <body class="{% block body_class %}{% endblock %}" style="background-color: rgb(152, 215, 219);">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">BELIKILO.COM</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown" >
+              <ul class="navbar-nav ml-auto">                
+                    {% if request.user.is_authenticated %}
+                    <p style="color: rgb(0, 0, 0);">Hi {{ request.user.username }}, 
+                    <li class="nav-item">                        
+                        <a class="nav-link d-inline" href="{% url 'account_logout' %}">Log Keluar?</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">                       
+                        <a class="nav-link d-inline" href="{% url 'account_login' %}">Log Masuk</a></p>
+                    </li>
+                    <li class="nav-item">                       
+                        <a class="nav-link d-inline" href="{% url 'account_signup' %}">Daftar</a></p>
+                    </li>
+                    {% endif %}
+              </ul>
+            </div>
+          </nav>
+        {% wagtailuserbar %}\
 
-        <div class="auth">
-            {% if request.user.is_authenticated %}
-                Hello {{ request.user.username }},
-                <a href="{% url 'account_logout' %}">Logout?</a>
-            {% else %}
-                Hi guest! 
-                <a href="{% url 'account_login' %}">Login?</a>
-            {% endif %}
-        
+        <div class="container mt-5 mb-5">
+            <div class="row">
+              <div class="col-md-6 offset-md-3">
+                    {% block content %}{% endblock %}
+              </div>
+            </div>
         </div>
-
-        {% block content %}{% endblock %}
+        
 
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'js/belikilo.js' %}"></script>
