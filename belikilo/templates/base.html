@@ -25,8 +25,9 @@
             {# Override this in templates to add extra stylesheets #}
         {% endblock %}
     </head>
+    {% wagtailuserbar %}
 
-    <body class="{% block body_class %}{% endblock %}" style="background-color: rgb(152, 215, 219);">
+    <body class="{% block body_class %}{% endblock %}" style="background-color: rgb(126, 139, 255);">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="/">BELIKILO.COM</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,13 +51,10 @@
               </ul>
             </div>
           </nav>
-        {% wagtailuserbar %}\
 
-        <div class="container mt-5 mb-5">
+        <div class="container mt-5 mb-5" style="background-color: white;">
             <div class="row">
-              <div class="col-md-6 offset-md-3">
                     {% block content %}{% endblock %}
-              </div>
             </div>
         </div>
         

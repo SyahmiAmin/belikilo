@@ -1,0 +1,17 @@
+{% extends 'products/base.html' %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-3">
+            <h2>Edit Kirim</h2>
+            <form method="kirim" class="kirim-form">{% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="save btn btn-primary">SAVE</button>
+            </form>
+        </div>
+    </div>
+    
+</div>
+
+{% endblock %}

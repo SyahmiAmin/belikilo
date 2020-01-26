@@ -1,0 +1,38 @@
+{% extends "products/base.html" %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<a href="{% url 'kirim_new' %}" class="top-menu">Add New Kirim</a>
+{% endif %}
+
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            {% for kirim in kirims %}
+                <a href="{% url 'kirim_detail' pk=kirim.pk %}" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                    <h2 class="mb-1">{{ kirim.destination }}</h2>
+                    <small>Flight: {{ kirim.arrival_date }}</small>
+                    </div>
+                    <p class="mb-1">Hantar di {{ kirim.location }} sebelum {{ kirim.submission_date }}.</p>
+                    <small>{{ kirim.available_units_in_kg }}kg available dengan RM{{ kirim.price_in_RM }} sekilo</small>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+<!-- <div>
+    <h2><a href="">{{ kirim.title }}</a></h2>
+    
+    <p>Trip: {{ kirim.destination }}
+    Hantar di {{ kirim.location }} sebelum {{ kirim.submission_date }}.
+    Tarikh Sampai: {{ kirim.arrival_date }}
+    Harga 1kg: RM{{ kirim.price_in_RM }}
+    Available: {{ kirim.available_unit_in_kg }}kg
+    {{ kirim.text|linebreaksbr }}</p>
+</div> -->
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'products/base.html' %}
+
+{% block content %}
+	<div class="kirim">
+        {% if user.is_authenticated %}
+            <a class="btn btn-default" href="{% url 'kirim_edit' pk=kirim.pk %}">Edit</a>
+        {% endif %}
+
+
+        <h2><a href="">{{ kirim.title }}</a></h2>
+        <ul>
+            <li>Trip: {{ kirim.destination }}</li>
+            <li>hantar: {{ kirim.location }}</li>
+            <li>Hantar sebelum {{ kirim.submission_date }}</li>
+            <li>Dijangka Sampai: {{ kirim.arrival_date }}</li>
+            <li>Harga 1kg: RM{{ kirim.price_in_RM }}</li>
+            <li>Available: {{ kirim.available_unit_in_kg }}kg</li>
+            <li>Nota Tambahan:{{ kirim.description }}</li>
+        </ul>
+
+	</div>
+{% endblock %}
